@@ -74,14 +74,14 @@ class _SimpleClinometerState extends State<SimpleClinometer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Accelerometer Example'),
+        title: Text('Simple Clinometer'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Accelerometer Data:',
+              'Angle data:',
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 10),
