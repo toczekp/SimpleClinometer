@@ -31,7 +31,7 @@ class _SimpleClinometerState extends State<SimpleClinometer> {
   // List to store accelerometer data
   List<AccelerometerEvent> _accelerometerValues = [];
   List<double> angle = [0.0, 0.0, 0.0];
-  List<double> angleHold = [];
+  List<double> angleHold = [999, 999, 999];
   // StreamSubscription for accelerometer events
   late StreamSubscription<AccelerometerEvent> _accelerometerSubscription;
 
@@ -76,7 +76,18 @@ class _SimpleClinometerState extends State<SimpleClinometer> {
       appBar: AppBar(
         title: Text('Simple Clinometer'),
       ),
-      body: Center(
+      body: GestureDetector(
+        onTap: () {
+          setState(() {
+            if (angleHold[0] == 999.0) {
+              angleHold = angle;
+              print(angleHold);
+            } else {
+              angleHold = [999.0, 999.0, 999.0];
+              print(angleHold);
+            }
+          });
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
