@@ -76,36 +76,38 @@ class _SimpleClinometerState extends State<SimpleClinometer> {
       appBar: AppBar(
         title: Text('Simple Clinometer'),
       ),
-      body: GestureDetector(
-        onTap: () {
-          setState(() {
-            if (angleHold[0] == 999.0) {
-              angleHold = angle;
-              print(angleHold);
-            } else {
-              angleHold = [999.0, 999.0, 999.0];
-              print(angleHold);
-            }
-          });
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Angle data:',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 10),
-            if (_accelerometerValues.isNotEmpty)
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              if (angleHold[0] == 999.0) {
+                angleHold = angle;
+                print(angleHold);
+              } else {
+                angleHold = [999.0, 999.0, 999.0];
+                print(angleHold);
+              }
+            });
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
               Text(
-                'X: ${angle[0].toStringAsFixed(2)}, '
-                'Y: ${angle[1].toStringAsFixed(2)}, '
-                'Z: ${angle[2].toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 16),
-              )
-            else
-              Text('No data available', style: TextStyle(fontSize: 16)),
-          ],
+                'Angle data:',
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(height: 10),
+              if (_accelerometerValues.isNotEmpty)
+                Text(
+                  'X: ${angle[0].toStringAsFixed(2)}, '
+                  'Y: ${angle[1].toStringAsFixed(2)}, '
+                  'Z: ${angle[2].toStringAsFixed(2)}',
+                  style: TextStyle(fontSize: 16),
+                )
+              else
+                Text('No data available', style: TextStyle(fontSize: 16)),
+            ],
+          ),
         ),
       ),
     );
