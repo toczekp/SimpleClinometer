@@ -97,14 +97,30 @@ class _SimpleClinometerState extends State<SimpleClinometer> {
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(height: 10),
-              if (_accelerometerValues.isNotEmpty)
+              if (angleHold[0] != 999.0 && _accelerometerValues.isNotEmpty)
+                Text(
+                  'X: ${angleHold[0].toStringAsFixed(2)}, '
+                  'Y: ${angleHold[1].toStringAsFixed(2)}, '
+                  'Z: ${angleHold[2].toStringAsFixed(2)}',
+                  style: TextStyle(fontSize: 16, color: Colors.red),
+                )
+              else
+                SizedBox(height: 23),
+              if (angleHold[0] != 999.0 && _accelerometerValues.isNotEmpty)
+                Text(
+                  'X: ${(angle[0] - angleHold[0]).toStringAsFixed(2)}, '
+                  'Y: ${(angle[1] - angleHold[1]).toStringAsFixed(2)}, '
+                  'Z: ${(angle[2] - angleHold[2]).toStringAsFixed(2)}',
+                  style: TextStyle(fontSize: 16),
+                ),
+              if (angleHold[0] == 999.0 && _accelerometerValues.isNotEmpty)
                 Text(
                   'X: ${angle[0].toStringAsFixed(2)}, '
                   'Y: ${angle[1].toStringAsFixed(2)}, '
                   'Z: ${angle[2].toStringAsFixed(2)}',
                   style: TextStyle(fontSize: 16),
-                )
-              else
+                ),
+              if (_accelerometerValues.isEmpty)
                 Text('No data available', style: TextStyle(fontSize: 16)),
             ],
           ),
